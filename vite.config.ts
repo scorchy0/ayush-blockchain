@@ -1,18 +1,24 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
-export default defineConfig(({ mode }) => ({
-  base: "/ayush-blockchain-main/",  // GitHub Pages base path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default defineConfig(() => ({
+  base: "/ayush-blockchain/", // GitHub Pages base path
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  build: {
+    sourcemap: true, // optional, useful for debugging
+  },
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": resolve(__dirname, "./src"),
     },
   },
 }));
