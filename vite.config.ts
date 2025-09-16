@@ -7,13 +7,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig(() => ({
-  base: "/ayush-blockchain/", // GitHub Pages base path
+  base: "/ayush-blockchain/", 
   server: {
     host: "::",
     port: 8080,
   },
   build: {
-    sourcemap: true, // optional, useful for debugging
+    outDir: "docs",
+    sourcemap: true,
   },
   plugins: [react()],
   resolve: {
