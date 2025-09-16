@@ -1,14 +1,18 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
-import path from "path"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
 
-// ⚠️ Replace "ayush-blockchain-main" with your actual GitHub repo name if different
-export default defineConfig({
-  plugins: [react()],
-  base: "/ayush-blockchain-main/",
+export default defineConfig(({ mode }) => ({
+  base: "/ayush-blockchain-main/",  // GitHub Pages base path
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-})
+}));
