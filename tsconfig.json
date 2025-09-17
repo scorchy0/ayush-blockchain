@@ -15,8 +15,6 @@
     "allowJs": true,
     "noUnusedLocals": false,
     "strictNullChecks": false,
-
-    // 👇 add these
     "moduleResolution": "node",
     "types": ["node"]
   }
